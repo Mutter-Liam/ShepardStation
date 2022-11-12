@@ -1,7 +1,10 @@
+
 const { json } = require("body-parser");
 const { application } = require("express");
 
 const form = document.querySelector("form");
+
+console.log("S");
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -10,6 +13,7 @@ form.addEventListener('submit', (e) => {
         password: form.elements["password"].value,
     };
     
+
     if (data.password !== form.elements["create-password"]){
         invalidEntry("Password does not match.");
         return;
@@ -20,11 +24,12 @@ form.addEventListener('submit', (e) => {
         return;
     }
     
-    if(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,}$/.test(data.password)){
-        
+    if(!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,}$/.test(data.password)){
+        invalidEntry("Invalid Password");
+        return;    
     }
 
-    fetch("/create-account", {
+/*    fetch("/create-account", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -33,7 +38,7 @@ form.addEventListener('submit', (e) => {
     }).then( (res) => {
         //Success 201
         //Failure 409
-    });
+    });*/
 
 });
 
