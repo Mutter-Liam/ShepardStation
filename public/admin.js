@@ -1,4 +1,4 @@
-
+let uData = [];
 
 fetch('/get-all-data', {
     method: "POST",
@@ -6,13 +6,27 @@ fetch('/get-all-data', {
     if (data.status != 200){
         throw new Error("Failed to recieve user data");
     }
-    console.log(data);
+   
     return data.json();
 }).then(user_data => {
-    
-    let str = ""
-    for([key, value] of Object.entries(user_data)){
-        console.log(value)
+    uData = user_data.map(x=>x);
+    document.getElementById("bar").innerHTML = `<form class="search">
+    <input type="text" onkeyup="displayNames()" id="searchbar" placeholder="Search.." name="search">`
+    displayNames();
+});
+
+function displayNames(){
+    let str = ``;
+
+    let input = document.getElementById('searchbar').value;
+
+    let data = uData;
+    if (input != "" && input != undefined){
+        data = data.filter(p => p.name.substring(0, input.length) === input);
+    }
+
+    for(value of data){
+        
         let name = value["name"];
         let email = value["email"];
         let hours = value["service_hours"];
@@ -26,7 +40,7 @@ fetch('/get-all-data', {
             <p>Standing: ${standing}</p>
         </div>`;
     }
-    console.log(str);
+
     document.getElementById("list").innerHTML = str;
 
     var coll = document.getElementsByClassName("collapsible");
@@ -41,10 +55,6 @@ fetch('/get-all-data', {
     } else {
       content.style.display = "block";
     }
-  });
+        });
+    }
 }
-})
-
-
-
-
