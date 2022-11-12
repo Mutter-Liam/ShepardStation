@@ -8,6 +8,7 @@ const uuidToken = require("uuid-token-generator");
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { allowedNodeEnvironmentFlags } = require("process");
+const { runInNewContext } = require("vm");
 
 //setting up Auth
 const SALT_ROUNDS = 10;
@@ -23,6 +24,8 @@ app.use(express.static(__dirname + "/public"));
 //importing data from databases
 const logins = JSON.parse(fs.readFileSync(__dirname + "/database/login.json"));
 const user_data = JSON.parse(fs.readFileSync(__dirname + "/database/user-data.json"));
+const posts = JSON.parse(fs.readFileSync(__dirname + "/database/posts.json"));
+
 
 //homepage
 app.get("/", (req,res) => {
@@ -51,7 +54,7 @@ app.get("/form/:form", (req,res) => {
             res.sendFile(__dirname + "/views/attendance.html");
             break;
         case "service_hours":
-            res.sendFile(__dirname + "/views/service_hours.html")
+            res.sendFile(__dirname + "/views/service-hours.html")
             break;
         default:
             res.sendStatus(404)
@@ -157,6 +160,24 @@ app.post("/update-personal-data", (req,res) => {
     else{
         res.sendStatus(409)
     }
+});
+
+//allows a user to submit an attendance form that will update the database
+app.post("/submit-attendance", (req,res) => {
+    if(req.body.code != posts.attendence.code){
+        res.sendStatus(403)
+    }
+    posts.attendence.responses.push({
+        "liked":req.body.liked,
+        "improve":req.body.improve
+    })
+    if(user_data[req.cookies.token]){
+        user_data[req.cookies.token].attendence.unshift(new Date().toDateString())
+    }
+
+    fs.writeFileSync("./database/user-data.json", JSON.stringify(user_data));
+    fs.writeFileSync("./database/posts.json", JSON.stringify(posts));
+    res.sendStatus(200)
 });
 
 http.listen(3000, () => {
