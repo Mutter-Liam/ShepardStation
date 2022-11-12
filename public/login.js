@@ -22,7 +22,7 @@ form.addEventListener('submit', (e) => {
             invalidEntry("Invalid Username/Password");
             return;
         }
-        window.location = "/index";
+        window.location = "/";
 
     });
 
