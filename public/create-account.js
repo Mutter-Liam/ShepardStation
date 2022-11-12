@@ -8,17 +8,17 @@ form.addEventListener('submit', (e) => {
     };
     
     console.log("S");
-
-    if (data.password !== form.elements["create-password"]){
+    console.log( form.elements);
+    if (data.password != form.elements["create-password"].value){
         invalidEntry("Password does not match.");
         return;
     }
-
+    
     if (data.email.split("@")[1] != "umass.edu"){
         invalidEntry("Email is not vallid");
         return;
     }
-    
+  
     if(!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,}$/.test(data.password)){
         invalidEntry("Invalid Password");
         return;    
@@ -38,5 +38,5 @@ form.addEventListener('submit', (e) => {
 });
 
 const invalidEntry = (msg) => {
-
+    console.log(msg);
 }
