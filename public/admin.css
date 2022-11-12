@@ -47,3 +47,7 @@ html{
     width: 70%;
     background: #e0e0e0;
   }
+
+body{
+  margin:0px;
+}

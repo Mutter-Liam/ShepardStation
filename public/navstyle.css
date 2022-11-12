@@ -1,8 +1,8 @@
 
 .topnav{
-    border-radius: 4px;
     background-color: #881c1c;
     overflow: hidden;
+    margin-bottom: 2.5%;
 }
 
 .topnav a{

@@ -14,12 +14,12 @@ fetch("/get-account-data",{
         document.getElementById("nav").innerHTML = `
         <div class="topnav">
             <a class="active" href="/index">Home</a>
-            <a href="/account">My Profile</a>
-            <a href="#contact">Stuff</a>
+            <a href="#">Stuff</a>
+            <a href="/form/attendance">Attendance</a>
             <a href="/admin">Admin</a>
 
             <a onclick="signout()" id="signout">Sign Out</a>
-            <a id="signout">${name}</a>
+            <a id="signout" href="/account">${name}</a>
         </div>`;
     }
     else{
@@ -28,7 +28,7 @@ fetch("/get-account-data",{
             <a href="#contact">Stuff</a>
 
             <a onclick="signout()" id="signout">Sign Out</a>
-            <a id="name">${name}</a>
+            <a href="/account" id="name">${name}</a>
         </div>`;
     }
 })
