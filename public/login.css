@@ -63,3 +63,7 @@ input.submit:hover {
 .footer a:hover{
     text-decoration: underline;
 }
+
+#error-box{
+    color: #ca1a1a;
+}
