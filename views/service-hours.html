@@ -1,0 +1,24 @@
+<head>
+    <title>WMUA</title>
+    <link rel="stylesheet" href="../form.css">
+</head>
+<body>
+    <div class="header">
+        Attendance
+    </div>
+    <div id = "subheader"></div>
+    <div class="container">
+        <form method="post" id="myForm">
+            <select id="director">
+                <option value="volvo">Kate Horgan - General Manager</option>
+                <option value="saab">Isabella Cahill - Programmer</option>
+                <option value="opel">Gil Cuevas - Communications and Music Director</option>
+                <option value="audi">Mariam Hassan - Archival Music Director</option>
+              </select>
+            <input id = "hours" type="number" placeholder="# of Hours" required>
+            <textarea id = "description" placeholder="Brief description of the task(s) preformed" required></textarea>
+            <input type="submit" class="submit" id="login" value="Submit Attendance">
+        </form>
+    </div>
+    <script src = "../attendance.js"></script>
+</body>
