@@ -1,17 +1,19 @@
 <head>
     <title>WMUA</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="form.css">
 </head>
 <body>
     <div class="header">
         Attendance
+    </div>
+    <div id = "subheader"></div>
     <div class="container">
         <form method="post" id="myForm">
             <input type="text" placeholder="Attendance Code" required>
             <textarea placeholder="What did you like about the meeting?"></textarea>
             <textarea placeholder="What could be improved about the meeting?"></textarea>
-            <input type="submit" class="submit" id="login" value="Create Account">
+            <input type="submit" class="submit" id="login" value="Submit Attendance">
         </form>
     </div>
-    <script src="create-account.js"></script>
+    <script src = "attendance.js"></script>
 </body>

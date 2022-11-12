@@ -16,6 +16,7 @@ html {
   min-width:350px;
   margin: 0 auto;
   border-radius: 6px;
+  margin-top: 10px;
 }
 
 input {
@@ -26,6 +27,17 @@ input {
   font-size: 15px;
   border-style: none;
   border:1px solid lightgray;
+}
+
+textarea{
+  width: 100%;
+  margin-bottom: 5px;
+  padding: 5%;
+  border-radius: 6px;
+  font-size: 15px;
+  border-style: none;
+  border:1px solid lightgray;
+  height: 20vh;
 }
 
 input.submit {
@@ -44,8 +56,15 @@ input.submit:hover {
 
 .header{
     font-size: 30px;
+    font-weight: bold;
     text-align: center;
     color: #212721;
+}
+
+#subheader{
+  font-size: 15px;
+  text-align: center;
+  color: #212721;
 }
 
 .footer{
