@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Mutter-Liam/ShepardStation/issues"
   },
-  "homepage": "https://github.com/Mutter-Liam/ShepardStation#readme"
+  "homepage": "https://github.com/Mutter-Liam/ShepardStation#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
