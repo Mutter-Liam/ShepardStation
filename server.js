@@ -164,20 +164,24 @@ app.post("/update-personal-data", (req,res) => {
 
 //allows a user to submit an attendance form that will update the database
 app.post("/submit-attendance", (req,res) => {
-    if(req.body.code != posts.attendence.code){
-        res.sendStatus(403)
-    }
-    posts.attendence.responses.push({
-        "liked":req.body.liked,
-        "improve":req.body.improve
-    })
+    console.log(req.cookies)
     if(user_data[req.cookies.token]){
-        user_data[req.cookies.token].attendence.unshift(new Date().toDateString())
+        if(req.body.code != posts.attendence.code){
+            res.sendStatus(403)
+        }
+        console.log(req.body)
+        posts.attendence.responses.push({
+            "liked":req.body.liked,
+            "improve":req.body.improve
+        })
+            user_data[req.cookies.token].attendence.unshift(new Date().toDateString())
+            console.log(user_data[req.cookies.token])
+
+        fs.writeFileSync("./database/user-data.json", JSON.stringify(user_data));
+        fs.writeFileSync("./database/posts.json", JSON.stringify(posts));
+        res.sendStatus(200)
     }
 
-    fs.writeFileSync("./database/user-data.json", JSON.stringify(user_data));
-    fs.writeFileSync("./database/posts.json", JSON.stringify(posts));
-    res.sendStatus(200)
 });
 
 http.listen(3000, () => {
