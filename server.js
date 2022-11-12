@@ -54,6 +54,12 @@ app.get("/index", (req,res) =>{
     res.sendFile(__dirname + "/views/index.html")
 });
 
+//admin oage
+//home page
+app.get("/admin", (req,res) =>{
+    res.sendFile(__dirname + "/views/admin.html")
+});
+
 //endpoint for creating a new account
 app.post("/create-account", (req,res)=>{
     //tests to see if email is already taken
@@ -108,6 +114,18 @@ app.post("/get-account-data", (req,res) => {
     if(accountData){
 
         res.status(200).send(accountData)
+    }
+    else{
+        res.sendStatus(409)
+    }
+});
+
+//Get data from all accounts
+app.post("/get-all-data", (req,res) => {
+    const accountData = user_data[req.cookies.token]
+
+    if(accountData.is_admin){
+        res.status(200).send(user_data)
     }
     else{
         res.sendStatus(409)
