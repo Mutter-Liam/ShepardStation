@@ -94,11 +94,28 @@ app.post("/login", (req,res) => {
     }
 });
 
+//returns the public data for an account
 app.post("/get-account-data", (req,res) => {
     const accountData = user_data[req.cookies.token]
     if(accountData){
         console.log(accountData)
         res.status(200).send(accountData)
+    }
+    else{
+        res.sendStatus(409)
+    }
+});
+
+//updates the data editable data for an average user
+app.post("/update-personal-data", (req,res) => {
+    if(user_data[req.cookies.token]){
+        if(req.body.name){
+            user_data[req.cookies.token].name = req.body.name
+        }
+        if(req.body.show){
+            user_data[req.cookies.token].show = req.body.show
+        }
+        res.sendStatus(200)
     }
     else{
         res.sendStatus(409)
