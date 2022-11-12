@@ -18,7 +18,7 @@ fetch("/get-account-data",{
             <a href="#contact">Stuff</a>
             <a href="/admin">Admin</a>
 
-            <a href="#signout" id="signout">Sign Out</a>
+            <a onclick="signout()" id="signout">Sign Out</a>
             <a id="signout">${name}</a>
         </div>`;
     }
@@ -27,8 +27,13 @@ fetch("/get-account-data",{
             <a class="active" href="/index">Home</a>
             <a href="#contact">Stuff</a>
 
-            <a href="#signout" id="signout">Sign Out</a>
-            <a href="/account" id="name">${name}</a>
+            <a onclick="signout()" id="signout">Sign Out</a>
+            <a id="name">${name}</a>
         </div>`;
     }
 })
+
+const signout = () => {
+    document.cookie = "token=";
+   window.location = "/login";
+}
