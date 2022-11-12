@@ -16,13 +16,21 @@ form.addEventListener('submit', (e) => {
             "Content-Type": "application/json",
         },
     }).then( (res) => {
-        alert("login sucessful")
         //Success 201
         //Failure 409
+        if (res == 409){
+            invalidEntry("Invalid Username/Password");
+            return;
+        }
+        window.location = "/index";
+
     });
 
 });
 
 const invalidEntry = (msg) => {
-
+    console.log(msg);
+    let errorBox = document.getElementById("error-box");
+    document.getElementById("myForm").reset();
+    errorBox.innerHTML = msg;
 }

@@ -44,6 +44,11 @@ app.get("/create-account", (req,res) =>{
     res.sendFile(__dirname + "/views/create-account.html")
 });
 
+//home page
+app.get("/index", (req,res) =>{
+    res.sendFile(__dirname + "/views/index.html")
+});
+
 //endpoint for creating a new account
 app.post("/create-account", (req,res)=>{
     //tests to see if email is already taken
