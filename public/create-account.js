@@ -1,4 +1,5 @@
 const form = document.querySelector("form");
+
 console.log(form)
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -31,6 +32,12 @@ form.addEventListener('submit', (e) => {
     }).then( (res) => {
         //Success 201
         //Failure 409
+        if (res == 409){
+            invalidEntry("Email already in use");
+            return;
+        }
+        
+        window.location = "/account";
     });
 
 });
