@@ -92,7 +92,8 @@ app.post("/login", (req,res) => {
 app.post("/get-account-data", (req,res) => {
     const accountData = user_data[req.cookies.token]
     if(accountData){
-        res.sendStatus(200).send(accountData)
+        console.log(accountData)
+        res.status(200).send(accountData)
     }
     else{
         res.sendStatus(409)
