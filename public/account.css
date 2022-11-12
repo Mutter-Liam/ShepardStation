@@ -16,6 +16,10 @@ body{
 }
 .table-responsive{
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
 }
 
 .table.table-profile>thead>tr>th {
@@ -189,4 +193,25 @@ select.form-control:not([size]):not([multiple]) {
     display: inline;
     width: auto;
     padding: 0 7px;
+}
+
+h2{
+    width: 500px;
+    text-align: center;
+    outline: none;
+}
+
+td{
+    outline: none;
+}
+
+#optContainer{
+    width: 680px;
+    text-align: right;
+    display: none;
+}
+
+#optContainer div:hover{
+    color: #881c1c;
+    cursor: hand;
 }

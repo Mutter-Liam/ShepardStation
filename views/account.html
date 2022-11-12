@@ -11,9 +11,8 @@
 
                <div class="tab-pane fade in active show" id="profile-about">
                   <div class="table-responsive">
-                    <h2 id = "name">Name</h2>
+                    <h2 id = "name" contentEditable="true" >Name</h2>
                      <table class="table table-profile">
-                        
                         <tbody>
                            <tr class="highlight">
                               <td class="field">Email:</td>
@@ -42,13 +41,17 @@
                            </tr>
                            <tr class="highlight">
                               <td class="field">Show: </td>
-                              <td id = "show">XXXX</td>
+                              <td id = "show" contentEditable="true" >XXXX</td>
                            </tr>
                            <tr class="divider">
                               <td colspan="2"></td>
                            </tr>
                         </tbody>
                      </table>
+                     <div id = "optContainer">
+                        <div id = "saveButton">save</div>
+                        <div id = "cancelButton">cancel</div>
+                     </div>
                   </div>
                </div>
             </div>
