@@ -22,7 +22,7 @@ form.addEventListener('submit', (e) => {
             return;
         }
         if(res.status == 200){
-            document.querySelector(".container").innerHTML = "Attendance Submitted Sucessfully"
+            document.querySelector(".container").innerHTML = `<div style = "padding: 10px,text-align:center">Attendance Submitted Sucessfully</div>`
         }
 
     });
