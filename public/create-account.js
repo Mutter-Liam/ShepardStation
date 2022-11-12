@@ -7,22 +7,20 @@ form.addEventListener('submit', (e) => {
         password: form.elements["password"].value,
     };
     
-    console.log(data);
-
-    // if (data.password !== form.elements["create-password"]){
-    //     invalidEntry("Password does not match.");
-    //     return;
-    // }
-
-    // if (data.email.split("@")[1] != "umass.edu"){
-    //     invalidEntry("Email is not vallid");
-    //     return;
-    // }
+    if (data.password != form.elements["create-password"].value){
+        invalidEntry("Password does not match.");
+        return;
+    }
     
-    // if(!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,}$/.test(data.password)){
-    //     invalidEntry("Invalid Password");
-    //     return;    
-    // }
+    if (data.email.split("@")[1] != "umass.edu"){
+        invalidEntry("Email is not vallid");
+        return;
+    }
+  
+    if(!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,}$/.test(data.password)){
+        invalidEntry("Invalid Password");
+        return;    
+    }
 
     fetch("/create-account", {
         method: "POST",
@@ -38,5 +36,5 @@ form.addEventListener('submit', (e) => {
 });
 
 const invalidEntry = (msg) => {
-
+    console.log(msg);
 }
