@@ -16,6 +16,15 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+#signout{
+    float:right;
+}
+
+#name{
+    float:right;
+}
+
+
 .topnav a:hover {
     background-color: #FAF9F6;
     color: #212721;
