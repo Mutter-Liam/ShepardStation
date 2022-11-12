@@ -88,7 +88,7 @@ app.post("/create-account", (req,res)=>{
 app.post("/login", (req,res) => {
     if(logins[(req.body.email).toLowerCase()]){
         if(bcrypt.compare(req.body.password, logins[(req.body.email).toLowerCase()].password)){
-            res.sendStatus(200).send(logins[(req.body.email).toLowerCase()].token)
+            res.setStatus(200).send(logins[(req.body.email).toLowerCase()].token)
         }
         else{
             res.sendStatus(409)
