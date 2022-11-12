@@ -103,8 +103,9 @@ app.post("/login", (req,res) => {
 //returns the public data for an account
 app.post("/get-account-data", (req,res) => {
     const accountData = user_data[req.cookies.token]
+
     if(accountData){
-        console.log(accountData)
+
         res.status(200).send(accountData)
     }
     else{

@@ -20,10 +20,10 @@ form.addEventListener('submit', (e) => {
         //Failure 409
         console.log(res);
         if (res.status == 200){
-            //window.location = "/index";
+            window.location = "/index";
             return;
         }
-        // window.location = "/";
+        invalidEntry("Invalid Email/Password");
 
     });
 
