@@ -70,7 +70,7 @@ app.post("/create-account", (req,res)=>{
         };
         user_data[token] = {
             "name":"",
-            "roles":"",
+            "roles":[],
             "email": req.body.email,
             "service_hours": 0,
             "good_standing": true,

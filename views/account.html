@@ -13,38 +13,42 @@
           
     <div class="user-info">
         <div class="profile-content">
-            <!-- begin tab-content -->
             <div class="tab-content p-0">
 
-               <!-- begin #profile-about tab -->
                <div class="tab-pane fade in active show" id="profile-about">
-                  <!-- begin table -->
                   <div class="table-responsive">
-                    <h2>Name</h2>
+                    <h2 id = "name">Name</h2>
                      <table class="table table-profile">
                         
                         <tbody>
                            <tr class="highlight">
                               <td class="field">Email:</td>
-                              <td>XXXXXXXXXX</td>
+                              <td id = "email">XXXXXXXXXX</td>
                            </tr>
                            <tr class="divider">
                               <td colspan="2"></td>
                            </tr>
                            <tr>
                               <td class="field">Service Hours:</td>
-                              <td>XX</td>
+                              <td id = "hours">XX</td>
+                           </tr>
+                           <tr id = "roleContainer">
+                              <td class="field">Role: </td>
+                              <td id = "role"></td>
+                           </tr>
+                           <tr class="divider">
+                              <td colspan="2"></td>
                            </tr>
                            <tr>
-                              <td class="field">Role: </td>
-                              <td></td>
+                              <td class="field">Member: </td>
+                              <td id = "status"></td>
                            </tr>
                            <tr class="divider">
                               <td colspan="2"></td>
                            </tr>
                            <tr class="highlight">
                               <td class="field">Show: </td>
-                              <td>XXXX</td>
+                              <td id = "show">XXXX</td>
                            </tr>
                            <tr class="divider">
                               <td colspan="2"></td>
@@ -52,11 +56,8 @@
                         </tbody>
                      </table>
                   </div>
-                  <!-- end table -->
                </div>
-               <!-- end #profile-about tab -->
             </div>
-            <!-- end tab-content -->
          </div>
     </div>
     <script src="account.js"></script>
