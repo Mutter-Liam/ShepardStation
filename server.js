@@ -50,8 +50,13 @@ app.post("/create-account", (req,res)=>{
         };
         user_data[token] = {
             "name":"",
-            "following":"",
-            "email": req.body.email
+            "roles":"",
+            "email": req.body.email,
+            "service_hours": 0,
+            "good_standing": true,
+            "show":"",
+            "attendence":[]
+
         }
         fs.writeFileSync("./database/login.json", JSON.stringify(logins));
         fs.writeFileSync("./database/user-data.json", JSON.stringify(user_data));
