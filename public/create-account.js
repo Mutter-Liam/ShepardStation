@@ -7,8 +7,6 @@ form.addEventListener('submit', (e) => {
         password: form.elements["password"].value,
     };
     
-    console.log("S");
-    console.log( form.elements);
     if (data.password != form.elements["create-password"].value){
         invalidEntry("Password does not match.");
         return;
