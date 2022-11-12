@@ -1,10 +1,4 @@
-
-const { json } = require("body-parser");
-const { application } = require("express");
-
 const form = document.querySelector("form");
-
-console.log("S");
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -13,6 +7,7 @@ form.addEventListener('submit', (e) => {
         password: form.elements["password"].value,
     };
     
+    console.log("S")
 
     if (data.password !== form.elements["create-password"]){
         invalidEntry("Password does not match.");
@@ -29,16 +24,16 @@ form.addEventListener('submit', (e) => {
         return;    
     }
 
-/*    fetch("/create-account", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-            "Content-Type": "application/json",
-        },
-    }).then( (res) => {
-        //Success 201
-        //Failure 409
-    });*/
+    // fetch("/create-account", {
+    //     method: "POST",
+    //     body: JSON.stringify(data),
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //     },
+    // }).then( (res) => {
+    //     //Success 201
+    //     //Failure 409
+    // });
 
 });
 
