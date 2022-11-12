@@ -1,11 +1,5 @@
-
-const { json } = require("body-parser");
-const { application } = require("express");
-
 const form = document.querySelector("form");
-
-console.log("S");
-
+console.log(form)
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     const data = {
@@ -13,6 +7,7 @@ form.addEventListener('submit', (e) => {
         password: form.elements["password"].value,
     };
     
+    console.log("S");
 
     if (data.password !== form.elements["create-password"]){
         invalidEntry("Password does not match.");
@@ -41,7 +36,6 @@ form.addEventListener('submit', (e) => {
     });*/
 
 });
-
 
 const invalidEntry = (msg) => {
 
