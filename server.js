@@ -34,6 +34,10 @@ app.get("/login", (req,res)=>{
     res.sendFile(__dirname + "/views/login.html")
 });
 
+app.get("/account", (req,res)=>{
+    res.sendFile(__dirname + "/views/account.html")
+});
+
 //endpoint for creating a new account
 app.post("/create-account", (req,res)=>{
     //tests to see if email is already taken
@@ -50,8 +54,13 @@ app.post("/create-account", (req,res)=>{
         };
         user_data[token] = {
             "name":"",
-            "following":"",
-            "email": req.body.email
+            "roles":"",
+            "email": req.body.email,
+            "service_hours": 0,
+            "good_standing": true,
+            "show":"",
+            "attendence":[]
+
         }
         fs.writeFileSync("./database/login.json", JSON.stringify(logins));
         fs.writeFileSync("./database/user-data.json", JSON.stringify(user_data));
