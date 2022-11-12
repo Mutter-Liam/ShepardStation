@@ -1,3 +1,4 @@
 node_modules/
 package-lock.json
-database/
+database/login.json
+database/user-data.json
