@@ -45,8 +45,18 @@ app.get("/create-account", (req,res) =>{
 });
 
 //attendence form
-app.get("/attendance", (req,res) => {
-    res.sendFile(__dirname + "/views/attendance.html")
+app.get("/form/:form", (req,res) => {
+    switch(req.params.form.toLowerCase()){
+        case "attendance":
+            res.sendFile(__dirname + "/views/attendance.html");
+            break;
+        case "service_hours":
+            res.sendFile(__dirname + "/views/service_hours.html")
+            break;
+        default:
+            res.sendStatus(404)
+    }
+    
 });
 
 //home page
@@ -141,6 +151,7 @@ app.post("/update-personal-data", (req,res) => {
         if(req.body.show){
             user_data[req.cookies.token].show = req.body.show
         }
+        fs.writeFileSync("./database/user-data.json", JSON.stringify(user_data));
         res.sendStatus(200)
     }
     else{
