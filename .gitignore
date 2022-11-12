@@ -3,3 +3,4 @@ package-lock.json
 database/login.json
 database/user-data.json
 
+..*.jsongit rm -r --cached .
