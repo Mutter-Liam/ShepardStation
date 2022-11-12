@@ -20,6 +20,9 @@ form.addEventListener('submit', (e) => {
         return;
     }
     
+    if(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,}$/.test(data.password)){
+        
+    }
 
     fetch("/create-account", {
         method: "POST",
