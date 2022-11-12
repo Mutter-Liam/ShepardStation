@@ -7,6 +7,7 @@ const bcrypt = require("bcrypt");
 const uuidToken = require("uuid-token-generator");
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const { allowedNodeEnvironmentFlags } = require("process");
 
 //setting up Auth
 const SALT_ROUNDS = 10;
@@ -31,7 +32,7 @@ app.get("/", (req,res) => {
 //new account page
 app.get("/login", (req,res)=>{
     res.sendFile(__dirname + "/views/login.html")
-})
+});
 
 //endpoint for creating a new account
 app.post("/create-account", (req,res)=>{
@@ -42,22 +43,47 @@ app.post("/create-account", (req,res)=>{
     }
     else{
         const password = bcrypt.hashSync(req.body.password, SALT_ROUNDS);
-        const id = tokenGenerator.generate();
+        const token = tokenGenerator.generate();
         logins[(req.body.email).toLowerCase()] = {
             "password": password,
-            "id": id
+            "token": token
         };
-        user_data[id] = {
+        user_data[token] = {
             "name":"",
             "following":"",
             "email": req.body.email
         }
         fs.writeFileSync("./database/login.json", JSON.stringify(logins));
         fs.writeFileSync("./database/user-data.json", JSON.stringify(user_data));
-        res.cookie("token",id).sendStatus(201);
+        res.cookie("token",token).sendStatus(201);
     }
-})
+});
+
+//processess login 
+app.post("/login", (req,res) => {
+    if(logins[(req.body.email).toLowerCase()]){
+        if(bcrypt.compare(req.body.password, logins[(req.body.email).toLowerCase()].password)){
+            res.sendStatus(200).send(logins[(req.body.email).toLowerCase()].token)
+        }
+        else{
+            res.sendStatus(409)
+        }
+    }
+    else{
+        res.sendStatus(409)
+    }
+});
+
+app.post("/get-account-data", (req,res) => {
+    const accountData = user_data[req.cookies.token]
+    if(accountData){
+        res.sendStatus(200).send(accountData)
+    }
+    else{
+        res.sendStatus(409)
+    }
+});
 
 http.listen(3000, () => {
     console.log("Listening on port: 3000");
-})
+});
