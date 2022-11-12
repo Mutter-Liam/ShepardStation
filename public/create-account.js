@@ -24,16 +24,16 @@ form.addEventListener('submit', (e) => {
         return;    
     }
 
-    // fetch("/create-account", {
-    //     method: "POST",
-    //     body: JSON.stringify(data),
-    //     headers: {
-    //         "Content-Type": "application/json",
-    //     },
-    // }).then( (res) => {
-    //     //Success 201
-    //     //Failure 409
-    // });
+    fetch("/create-account", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }).then( (res) => {
+        //Success 201
+        //Failure 409
+    });
 
 });
 
