@@ -141,6 +141,7 @@ app.post("/update-personal-data", (req,res) => {
         if(req.body.show){
             user_data[req.cookies.token].show = req.body.show
         }
+        fs.writeFileSync("./database/user-data.json", JSON.stringify(user_data));
         res.sendStatus(200)
     }
     else{
