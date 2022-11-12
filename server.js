@@ -53,7 +53,7 @@ app.get("/form/:form", (req,res) => {
         case "attendance":
             res.sendFile(__dirname + "/views/attendance.html");
             break;
-        case "service_hours":
+        case "service-hours":
             res.sendFile(__dirname + "/views/service-hours.html")
             break;
         default:
