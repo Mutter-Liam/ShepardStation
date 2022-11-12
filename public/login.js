@@ -16,13 +16,16 @@ form.addEventListener('submit', (e) => {
             "Content-Type": "application/json",
         },
     }).then( (res) => {
-        //Success 201
+        //Success 200
         //Failure 409
-        if (res == 409){
-            invalidEntry("Invalid Username/Password");
+        console.log(res);
+        if (res.status == 200){
+            //window.location = "/index";
             return;
         }
-        window.location = "/index";
+
+        invalidEntry("Invalid Username/Password");
+        return;
 
     });
 
