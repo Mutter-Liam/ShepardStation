@@ -89,7 +89,7 @@ app.post("/login", (req,res) => {
     if(logins[(req.body.email).toLowerCase()]){
         bcrypt.compare(req.body.password, logins[(req.body.email).toLowerCase()].password,(err,result) => {
             if(result){ 
-                res.status(200).send(logins[(req.body.email).toLowerCase()].token)
+                res.cookie("token",logins[(req.body.email).toLowerCase()].token).sendStatus(200);
             }
             else{
                 res.sendStatus(409)
