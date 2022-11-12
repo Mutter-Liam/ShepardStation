@@ -125,7 +125,7 @@ app.post("/get-all-data", (req,res) => {
     const accountData = user_data[req.cookies.token]
 
     if(accountData.is_admin){
-        res.status(200).send(user_data)
+        res.status(200).send(Object.values(user_data));
     }
     else{
         res.sendStatus(409)

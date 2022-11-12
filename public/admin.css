@@ -32,3 +32,18 @@ html{
     overflow: hidden;
     background-color: #f1f1f1;
   }
+
+  .search{
+    padding-top: 10px;
+    height: 30px;
+    margin: auto;
+  }
+
+  form.search input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: middle;
+    width: 70%;
+    background: #e0e0e0;
+  }
