@@ -4,6 +4,7 @@ console.log("your mom sucks me good")
 fetch("/get-account-data",{
     method: "POST",
 }).then((response)=>{
+    console.log(response)
     if(response.status == 200){
         return response.json()
     }
