@@ -3,6 +3,6 @@ fetch("/get-account-data",{
 }).then((response)=>{
     
     if(response.status != 200){
-        window.location = "/index";
+        window.location = "/login";
     }
 });
