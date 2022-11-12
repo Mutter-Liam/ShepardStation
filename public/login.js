@@ -23,7 +23,7 @@ form.addEventListener('submit', (e) => {
             //window.location = "/index";
             return;
         }
-        window.location = "/";
+        // window.location = "/";
 
     });
 

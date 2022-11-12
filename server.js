@@ -87,13 +87,14 @@ app.post("/create-account", (req,res)=>{
 //processess login 
 app.post("/login", (req,res) => {
     if(logins[(req.body.email).toLowerCase()]){
-        if(bcrypt.compare(req.body.password, logins[(req.body.email).toLowerCase()].password)){
-            res.setStatus(200).send(logins[(req.body.email).toLowerCase()].token)
-        }
-        else{
-            res.sendStatus(409)
-        }
-    }
+        bcrypt.compare(req.body.password, logins[(req.body.email).toLowerCase()].password,(err,result) => {
+            if(result){ 
+                res.status(200).send(logins[(req.body.email).toLowerCase()].token)
+            }
+            else{
+                res.sendStatus(409)
+            }
+    })}
     else{
         res.sendStatus(409)
     }
