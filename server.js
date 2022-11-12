@@ -34,8 +34,14 @@ app.get("/login", (req,res)=>{
     res.sendFile(__dirname + "/views/login.html")
 });
 
+//page to view account info
 app.get("/account", (req,res)=>{
     res.sendFile(__dirname + "/views/account.html")
+});
+
+//page to create an account
+app.get("/create-account", (req,res) =>{
+    res.sendFile(__dirname + "/views/create-account.html")
 });
 
 //endpoint for creating a new account
