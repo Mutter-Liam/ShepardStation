@@ -4,22 +4,29 @@ html{
 
 body{
     margin: 0px;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .row {
     display: flex;
     width: 80%;
     margin: auto;
-    font-family: 'Courier New', Courier, monospace;
+    
   }
   
   .column {
     flex: 50%;
     background-color: #fff;
     border-radius: 4px;
+    margin: 20px;
   }
+
+.welcome{
+  text-align: center;
+}
 
 h2{
     margin: auto;
     text-align: center;
+    text-decoration: underline;
 }
