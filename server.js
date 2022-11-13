@@ -196,6 +196,21 @@ app.post("/get-announcements", (req,res) =>{
     }
 });
 
+app.post("/submit-hours", (req,res)=>{
+    const submitter = user_data[req.cookies.token]
+    if(submitter){
+        posts.service_hour_forms.push({
+            id: submitter.id,
+            name: submitter.name,
+            hours: req.body.hours,
+            department: req.body.department,
+            description: req.body.description
+        })
+        res.sendStatus(200)
+    }
+    res.sendStatus(409)
+})
+
 http.listen(3000, () => {
     console.log("Listening on port: 3000");
 });
