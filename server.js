@@ -53,7 +53,7 @@ app.get("/form/:form", (req,res) => {
         case "attendance":
             res.sendFile(__dirname + "/views/attendance.html");
             break;
-        case "service-hours":
+        case "service_hours":
             res.sendFile(__dirname + "/views/service-hours.html")
             break;
         default:
@@ -88,7 +88,7 @@ app.post("/create-account", (req,res)=>{
             "token": token
         };
         user_data[token] = {
-            "name":"",
+            "name":req.body.name,
             "roles":[],
             "is_admin":false,
             "email": req.body.email,
@@ -182,6 +182,18 @@ app.post("/submit-attendance", (req,res) => {
         res.sendStatus(200)
     }
 
+});
+
+//Request Announcements
+app.post("/get-announcements", (req,res) =>{
+    const accountData = user_data[req.cookies.token];
+
+    if(accountData){
+        res.status(200).send(posts.announcements);
+    }
+    else{
+        res.sendStatus(409)
+    }
 });
 
 app.post("/submit-hours", (req,res)=>{

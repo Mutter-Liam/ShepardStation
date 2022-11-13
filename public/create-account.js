@@ -4,6 +4,7 @@ console.log(form)
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     const data = {
+        name: form.elements["name"].value,
         email: form.elements["email"].value,
         password: form.elements["password"].value,
     };
