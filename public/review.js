@@ -49,12 +49,7 @@ const onYes = async (i) => {
     let data = uData[i];
     uData.pop(i);       
     displayNames(x=>true);
-    await fetch("/update-hours", 
-    {method: "post", 
-    body: JSON.stringify(data),
-    headers: {
-        "Content-Type": "application/json",
-    },});
+ 
 }
 
 const onNo = async (i) => {

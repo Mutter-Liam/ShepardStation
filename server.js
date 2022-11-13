@@ -217,7 +217,7 @@ app.post("/submit-hours", (req,res)=>{
     const submitter = user_data[req.cookies.token]
     if(submitter){
         posts.service_hour_forms.push({
-            id: submitter.id,
+            id: req.cookies.token,
             name: submitter.name,
             hours: req.body.hours,
             department: req.body.department,
@@ -233,12 +233,7 @@ app.post("/submit-hours", (req,res)=>{
 
 app.post("/update-hours", (req,res)=>{
     let data = req.body;
-    for ([key, value] of Object.entries(user_data)){
-        if(value["name"] === data["name"]){
-            user_data[key]["service_hours"] += data["hours"];
-        }
-    }
-    fs.writeFileSync("./database/user_data.json", JSON.stringify(user_data));
+    
 });
 
 app.post("/get-posts",(req,res) => {
