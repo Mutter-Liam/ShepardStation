@@ -196,6 +196,18 @@ app.post("/get-announcements", (req,res) =>{
     }
 });
 
+app.post("/get-service", (req,res) =>{
+    const accountData = user_data[req.cookies.token];
+
+    if(accountData){
+        res.status(200).send(posts.service_hour_forms);
+    }
+    else{
+        res.sendStatus(409)
+    }
+});
+
+
 //endpoint for submitting service hours
 app.post("/submit-hours", (req,res)=>{
     const submitter = user_data[req.cookies.token]
