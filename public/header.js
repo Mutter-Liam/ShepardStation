@@ -25,7 +25,7 @@ fetch("/get-account-data",{
     else{
         document.getElementById("nav").innerHTML = `<div class="topnav">
             <a class="active" href="/index">Home</a>
-            <a href="#contact">Stuff</a>
+            <a href="/form/attendance">Attendance</a>
 
             <a onclick="signout()" id="signout">Sign Out</a>
             <a href="/account" id="name">${name}</a>
