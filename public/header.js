@@ -16,8 +16,7 @@ fetch("/get-account-data",{
             <a class="active" href="/index">Home</a>
             <a href="#">Stuff</a>
             <a href="/form/attendance">Attendance</a>
-            <a href="/admin">Admin</a>
-
+            <a href="/admin" haspopup="true">Admin</a>
             <a onclick="signout()" id="signout">Sign Out</a>
             <a id="signout" href="/account">${name}</a>
         </div>`;
