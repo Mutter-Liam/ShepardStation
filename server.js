@@ -73,6 +73,11 @@ app.get("/admin", (req,res) =>{
     res.sendFile(__dirname + "/views/admin.html")
 });
 
+//review page
+app.get("/review", (req,res) =>{
+    res.sendFile(__dirname + "/views/review.html")
+});
+
 //endpoint for creating a new account
 app.post("/create-account", (req,res)=>{
     //tests to see if email is already taken
