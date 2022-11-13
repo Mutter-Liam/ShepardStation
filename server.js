@@ -73,14 +73,15 @@ app.get("/admin", (req,res) =>{
     res.sendFile(__dirname + "/views/admin.html")
 });
 
-//review page
-app.get("/review", (req,res) =>{
-    res.sendFile(__dirname + "/views/review.html")
-});
-
+//directory page
 app.get("/directory", (req,res) => {
     res.sendFile(__dirname + "/views/directory.html")
 })
+
+//new post page
+app.get("/new-post", (req,res) => {
+    res.sendFile(__dirname + "/views/new-post.html")
+});
 
 //endpoint for creating a new account
 app.post("/create-account", (req,res)=>{
@@ -215,7 +216,7 @@ app.post("/get-announcements", (req,res) =>{
 app.post("/get-service", (req,res) =>{
     const accountData = user_data[req.cookies.token];
 
-    if(accountData){
+    if(accountData.is_admin){
         res.status(200).send(posts.service_hour_forms);
     }
     else{
@@ -243,9 +244,11 @@ app.post("/submit-hours", (req,res)=>{
 })
 
 app.post("/update-hours", (req,res)=>{
+    if(user_data[req.cookies.token].is_admin){
     let data = req.body;
+    console.log(data)
     let token = data["id"];
-    if (!"service_hours" in user_data[token]){return};ß
+     if (!"service_hours" in user_data[token]){return};
     let h = parseInt(user_data[token]["service_hours"]) +  parseInt(data["hours"]);
     console.log(h);
     user_data[token]["service_hours"] = h;
@@ -253,6 +256,10 @@ app.post("/update-hours", (req,res)=>{
 
     posts.service_hour_forms = posts.service_hour_forms.filter(p => !(p["id"] === token && p["department"] === data["department"] && p["description"] === data["description"]));
     fs.writeFileSync("./database/posts.json", JSON.stringify(posts));
+    }
+    else{
+        res.sendStatus(409)
+    }
 });
 
 app.post("/get-posts",(req,res) => {
@@ -262,13 +269,12 @@ app.post("/get-posts",(req,res) => {
 //end point for creating a post
 app.post("/make-post", (req,res)=>{
     if(user_data[req.cookies.token].is_admin){
-        const post = {
+        posts.announcements.unshift({
             "poster":user_data[req.cookies.token].name,
             "date": new Date().toDateString(), 
             "message": req.body.message,
             "image":(req.body.image)?req.body.image:"none"
-        }
-        posts.announcements.unshift([post])
+        })
         fs.writeFileSync("./database/posts.json", JSON.stringify(posts));
         res.sendStatus(200)
     }
