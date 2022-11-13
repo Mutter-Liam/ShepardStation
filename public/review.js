@@ -7,7 +7,6 @@ fetch('/get-service', {
     if (data.status != 200){
         throw new Error("Failed to recieve user data");
     }
-   
     return data.json();
 }).then(user_data => {
     uData = user_data.map(x=>x);
@@ -49,7 +48,13 @@ const onYes = async (i) => {
     let data = uData[i];
     uData.pop(i);       
     displayNames(x=>true);
- 
+    await fetch("/update-hours", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
 }
 
 const onNo = async (i) => {

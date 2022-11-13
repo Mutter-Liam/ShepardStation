@@ -244,7 +244,15 @@ app.post("/submit-hours", (req,res)=>{
 
 app.post("/update-hours", (req,res)=>{
     let data = req.body;
-    
+    let token = data["id"];
+    if (!"service_hours" in user_data[token]){return};ß
+    let h = parseInt(user_data[token]["service_hours"]) +  parseInt(data["hours"]);
+    console.log(h);
+    user_data[token]["service_hours"] = h;
+    fs.writeFileSync("./database/user-data.json", JSON.stringify(user_data));
+
+    posts.service_hour_forms = posts.service_hour_forms.filter(p => !(p["id"] === token && p["department"] === data["department"] && p["description"] === data["description"]));
+    fs.writeFileSync("./database/posts.json", JSON.stringify(posts));
 });
 
 app.post("/get-posts",(req,res) => {
