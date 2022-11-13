@@ -30,6 +30,12 @@
 
 
 .topnav a:hover {
-    background-color: #FAF9F6;
-    color: #212721;
+    background-color: #6b1313;
+    color: #ddd;
   }
+
+
+#sub{
+
+    background-color: #6b1313;
+}
