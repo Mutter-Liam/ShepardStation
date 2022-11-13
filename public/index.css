@@ -7,29 +7,38 @@ body{
     font-family: 'Courier New', Courier, monospace;
 }
 
-.row {
-    display: flex;
-    width: 80%;
-    margin: auto;
-    
-  }
-  
-  .column {
-
-    flex: 50%;
-    background-color: #fff;
-    border-radius: 4px;
-    margin: 20px;
-  }
-
-.welcome{
-  text-align: center;
+#container{
+  display: flex;
+  justify-content: center;
 }
 
-
-
-h2{
-    margin: auto;
-    text-align: center;
-    text-decoration: underline;
+.announcement{
+  background-color: lightgray;
+  width: 40%;
+  padding: 20px;
+  padding-left: 30px;
 }
+
+.announcementHeader{
+  width: 100%;
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.poster{
+  font-weight: bold;
+  margin-right: 3px;
+}
+
+.date{
+  font-style: italic;
+}
+
+.message{
+  margin-bottom: 5px;
+}
+
+img{
+  width: 100%;
+}
+
