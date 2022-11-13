@@ -34,7 +34,7 @@ function displayNames(filter){
             <p>Description: ${description}</p>
             <div class="button-align">
                 <button type="button" id="yes" onclick="onYes(${i})" class="butt">Confirm</button>
-                <button type="button" id="no" onclick="onNo(${i} class="butt">Deny</button>
+                <button type="button" id="no" onclick="onNo(${i})" class="butt">Deny</button>
             </div>
         </div>`;
         ++i;
@@ -45,13 +45,19 @@ function displayNames(filter){
 }
 
 
-const onYes = (i) => {
+const onYes = async (i) => {
     let data = uData[i];
-    uData.pop(i);
+    uData.pop(i);       
     displayNames(x=>true);
+    await fetch("/update-hours", 
+    {method: "post", 
+    body: JSON.stringify(data),
+    headers: {
+        "Content-Type": "application/json",
+    },});
 }
 
-const onNo = (i) => {
+const onNo = async (i) => {
     let data = uData[i];
     uData.pop(i);
     displayNames(x=>true);

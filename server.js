@@ -212,7 +212,6 @@ app.post("/get-service", (req,res) =>{
     }
 });
 
-
 //endpoint for submitting service hours
 app.post("/submit-hours", (req,res)=>{
     const submitter = user_data[req.cookies.token]
@@ -231,6 +230,16 @@ app.post("/submit-hours", (req,res)=>{
         res.sendStatus(409)
     }
 })
+
+app.post("/update-hours", (req,res)=>{
+    let data = req.body;
+    for ([key, value] of Object.entries(user_data)){
+        if(value["name"] === data["name"]){
+            user_data[key]["service_hours"] += data["hours"];
+        }
+    }
+    fs.writeFileSync("./database/user_data.json", JSON.stringify(user_data));
+});
 
 app.post("/get-posts",(req,res) => {
     res.send(posts.announcements)
