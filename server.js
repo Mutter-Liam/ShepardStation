@@ -88,7 +88,7 @@ app.post("/create-account", (req,res)=>{
             "token": token
         };
         user_data[token] = {
-            "name":"",
+            "name":req.body.name,
             "roles":[],
             "is_admin":false,
             "email": req.body.email,
