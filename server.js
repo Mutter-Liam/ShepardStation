@@ -53,7 +53,7 @@ app.get("/form/:form", (req,res) => {
         case "attendance":
             res.sendFile(__dirname + "/views/attendance.html");
             break;
-        case "service_hours":
+        case "service-hours":
             res.sendFile(__dirname + "/views/service-hours.html")
             break;
         default:
@@ -196,6 +196,7 @@ app.post("/get-announcements", (req,res) =>{
     }
 });
 
+//endpoint for submitting service hours
 app.post("/submit-hours", (req,res)=>{
     const submitter = user_data[req.cookies.token]
     if(submitter){
@@ -206,9 +207,12 @@ app.post("/submit-hours", (req,res)=>{
             department: req.body.department,
             description: req.body.description
         })
+        fs.writeFileSync("./database/posts.json", JSON.stringify(posts));
         res.sendStatus(200)
     }
-    res.sendStatus(409)
+    else{
+        res.sendStatus(409)
+    }
 })
 
 http.listen(3000, () => {
