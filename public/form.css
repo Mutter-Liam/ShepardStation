@@ -92,3 +92,7 @@ input.submit:hover {
 #error-box{
     color: #ca1a1a;
 }
+
+#center{
+  margin-top: 40px;
+}

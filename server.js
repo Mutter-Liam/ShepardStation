@@ -78,6 +78,10 @@ app.get("/review", (req,res) =>{
     res.sendFile(__dirname + "/views/review.html")
 });
 
+app.get("/directory", (req,res) => {
+    res.sendFile(__dirname + "/views/directory.html")
+})
+
 //endpoint for creating a new account
 app.post("/create-account", (req,res)=>{
     //tests to see if email is already taken
@@ -146,7 +150,14 @@ app.post("/get-all-data", (req,res) => {
         res.status(200).send(Object.values(user_data));
     }
     else{
-        res.sendStatus(409)
+        const publicData = Object.values(user_data).map((user)=>{
+            return {
+                name: user.name,
+                email: user.email,
+                show: user.show
+            }
+        })
+        res.status(200).send(publicData)
     }
 });
 
