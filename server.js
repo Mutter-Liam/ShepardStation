@@ -212,13 +212,12 @@ app.post("/get-service", (req,res) =>{
     }
 });
 
-
 //endpoint for submitting service hours
 app.post("/submit-hours", (req,res)=>{
     const submitter = user_data[req.cookies.token]
     if(submitter){
         posts.service_hour_forms.push({
-            id: submitter.id,
+            id: req.cookies.token,
             name: submitter.name,
             hours: req.body.hours,
             department: req.body.department,
@@ -232,7 +231,11 @@ app.post("/submit-hours", (req,res)=>{
     }
 })
 
-//just returns the announcemnt data
+app.post("/update-hours", (req,res)=>{
+    let data = req.body;
+    
+});
+
 app.post("/get-posts",(req,res) => {
     res.send(posts.announcements)
 });
