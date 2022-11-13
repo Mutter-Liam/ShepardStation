@@ -1,60 +1,71 @@
 let uData = [];
+let loaded = false;
 
-fetch('/get-all-data', {
+fetch('/get-service', {
     method: "POST",
 }).then((data) => {
     if (data.status != 200){
         throw new Error("Failed to recieve user data");
     }
-   
     return data.json();
 }).then(user_data => {
+    console.log(user_data)
     uData = user_data.map(x=>x);
-    document.getElementById("bar").innerHTML = `<form class="search">
-    <input type="text" onkeyup="displayNames()" id="searchbar" placeholder="Search.." name="search">`
-    displayNames();
+
+    displayNames(x => true);
+    loaded = true;
 });
 
-function displayNames(){
+function displayNames(filter){
     let str = ``;
 
-    let input = document.getElementById('searchbar').value;
-
-    let data = uData;
-    if (input != "" && input != undefined){
-        data = data.filter(p => p.name.substring(0, input.length) === input);
-    }
-
-    for(value of data){
-        
+    let i = 0;
+    for(value of uData){
+        if (!filter(value)){ ++i; continue;}
         let name = value["name"];
-        let email = value["email"];
-        let hours = value["service_hours"];
-        let standing = (value["good_standing"]) ? "Good": "Bad";
-    
+        let department = value["department"];
+        let hours = value["hours"];
+        let description = value["description"];
+        
         str += `<button type="button" class="collapsible">${name}</button>
-        <div class="content">
-            <p>${name}</p>
-            <p>${email}</p>
-            <p>Service Hours: ${hours}</p>
-            <p>Standing: ${standing}</p>
+        <div class="content" id=${"d"+i}>
+            <p>Name: ${name}</p>
+            <p>Hours Requested: ${hours}</p>
+            <p>Department: ${department}</p>
+            <p>Description: ${description}</p>
+            <div class="button-align">
+                <button type="button" id="yes" onclick="onChange(${i},true)" class="butt">Confirm</button>
+                <button type="button" id="no" onclick="onChange(${i},false)" class="butt">Deny</button>
+            </div>
         </div>`;
+        ++i;
     }
 
     document.getElementById("list").innerHTML = str;
 
-    var coll = document.getElementsByClassName("collapsible");
-    var i;
+}
 
-    for (i = 0; i < coll.length; i++) {
-    coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.display === "block") {
-      content.style.display = "none";
-    } else {
-      content.style.display = "block";
+
+const onChange = (i,save) => {
+    if(!loaded){return}
+    let data = uData[i];
+    if(i==0){uData.shift()}
+    else{uData.splice(i,i);}       
+    displayNames(x=>true);
+    if(!save){
+        data.hours = 0
     }
-        });
-    }
+    fetch("/update-hours", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+}
+
+const onNo = async (i) => {
+    let data = uData[i];
+    uData.pop(i);
+    displayNames(x=>true);
 }
