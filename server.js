@@ -245,6 +245,24 @@ app.post("/get-posts",(req,res) => {
     res.send(posts.announcements)
 });
 
+//end point for creating a post
+app.post("/make-post", (req,res)=>{
+    if(user_data[req.cookies.token].is_admin){
+        const post = {
+            "poster":user_data[req.cookies.token].name,
+            "date": new Date().toDateString(), 
+            "message": req.body.message,
+            "image":(req.body.image)?req.body.image:"none"
+        }
+        posts.announcements.unshift([post])
+        fs.writeFileSync("./database/posts.json", JSON.stringify(posts));
+        res.sendStatus(200)
+    }
+    else{
+        res.sendStatus(403)
+    }
+});
+
 http.listen(3000, () => {
     console.log("Listening on port: 3000");
 });
